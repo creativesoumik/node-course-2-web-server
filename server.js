@@ -2,6 +2,8 @@ const express = require('express'); // webserver
 const hbs = require('hbs'); //handlebars - view engine
 const fs = require('fs');
 
+const port = process.env.PORT || 3000;
+
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials'); // for including separate hbs files such as headers / footers
@@ -57,8 +59,10 @@ app.get('/bad', (req, res) => {
   });
 })
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+//heroku is going to setup the port so we need to use environment variable
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
 
